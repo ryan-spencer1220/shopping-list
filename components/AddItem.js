@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -18,12 +18,15 @@ const AddItem = ({addItem}) => {
         placeholder="Add Item..."
         style={styles.input}
         onChangeText={onChange}
+        ref={input => {
+          this.textInput = input;
+        }}
       />
       <TouchableOpacity
         style={styles.btn}
         onPress={() => {
           addItem(text);
-          setText('');
+          this.textInput.clear();
         }}>
         <Text style={styles.btnText}> + Add Item</Text>
       </TouchableOpacity>
